@@ -1,1 +1,1 @@
-# Persnal pages
+# Personal pages
