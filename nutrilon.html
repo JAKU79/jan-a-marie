@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+	@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+		
+    body {
+      background-color: #272822;
+      color: #f92672;
+      font-size: 20px;
+    }
+	a {
+		color: #f92672;
+	}
+    span.small {
+		font-size: 12px;
+	}
+	
+    input[type=number], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 24px;
+    }
+    
+    input[type=button] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+    
+  </style>
+  <script src=''></script>
+</head>
+<body>
+  <p><p/>
+    <form id="frm1" autocomplete="off">
+      <input type="number" onkeyup="myfunc()" id="nut" placeholder="Nutrilon (ml)"></br>
+      <p>Voda: <span id="vod">0.0</span>
+        <br/>
+        Odměrky: <span id="odm">0.0</span></p>
+      <!--<<input type="button" onclick="myfunc()" value="Výpočet">-->
+    </form>
+	<form id="frm2" autocomplete="off">
+      <input type="number" id="vah" onkeyup="myfunc2()" placeholder="Hmotnost (kg)"></br>
+      <p>Min: <span id="nutMin">0.0</span></br>
+	  <span class="small">Denní dávky: 6 = <span id="nutMin6">0.0</span>, 7 = <span id="nutMin7">0.0</span></span></br>
+	  Max: <span id="nutMax">0.0</span></br>
+	  <span class="small">Denní dávky: 6 = <span id="nutMax6">0.0</span>, 7 = <span id="nutMax7">0.0</span></span></p>
+	  <p><span class="small"><i>Platí do 7. měsíce věku. Zdroj: <a href="https://www.maminkam.cz/davky-mleka-pro-kojence">Dávky mléka pro kojence</href></i></span></p>
+      <!--<input type="button" onclick="myfunc2()" value="Výpočet">-->
+    </form>
+    <script>
+      function myfunc() {
+        let n =  document.getElementById('nut').value
+        let k = 100/3
+		if (n > 0) {
+			document.getElementById("odm").innerHTML = Number.parseFloat(n / k).toFixed(1)
+			document.getElementById("vod").innerHTML = Number.parseFloat(n / k * 30).toFixed(1)
+		} else {
+			document.getElementById("odm").innerHTML = '0.0'
+			document.getElementById("vod").innerHTML = '0.0'
+		}
+      }
+	  
+	  function myfunc2() {
+        let v =  Number(document.getElementById('vah').value)
+		console.log(v)
+		if (v > 0) {
+			document.getElementById("nutMin").innerHTML = Number.parseFloat(v * 150).toFixed(1)
+			document.getElementById("nutMax").innerHTML = Number.parseFloat(v * 180).toFixed(1)
+			document.getElementById("nutMin6").innerHTML = Number.parseFloat(v * 150 / 6).toFixed(1)
+			document.getElementById("nutMin7").innerHTML = Number.parseFloat(v * 150 / 7).toFixed(1)
+			document.getElementById("nutMax6").innerHTML = Number.parseFloat(v * 180 / 6).toFixed(1)
+			document.getElementById("nutMax7").innerHTML = Number.parseFloat(v * 180 / 7).toFixed(1)
+		} else {
+			document.getElementById("nutMin").innerHTML = '0.0'
+			document.getElementById("nutMax").innerHTML = '0.0'
+			document.getElementById("nutMin6").innerHTML = '0.0'
+			document.getElementById("nutMin7").innerHTML = '0.0'
+			document.getElementById("nutMax6").innerHTML = '0.0'
+			document.getElementById("nutMax7").innerHTML = '0.0'
+		}
+      }
+    </script>
+    </body>
+    </html>
